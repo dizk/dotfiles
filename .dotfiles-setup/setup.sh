@@ -3,8 +3,11 @@
 #
 # User calling the script
 #
-[ $SUDO_USER ] && user=$SUDO_USER || user=`whoami`
-user_home=$(sudo -u $user sh -c 'echo $HOME')
+[ $SUDO_USER ] && USER=$SUDO_USER || USER=`whoami`
+USER_HOME=$(sudo -u $USER sh -c 'echo $HOME')
+OH_MY_ZSH="$USER_HOME/.oh-my-zsh"
+DOTFILES="$USER_HOME/.dotfiles"
+
 
 #
 # Install packages
@@ -17,25 +20,35 @@ apt install -y \
 #
 # Clone dotfiles
 #
-if [ ! -d "$user_home/.dotfiles" ]; then
+if [ ! -d "$DOTFILES" ]; then
     echo "Initializing dotfiles..."
-    sudo -u $user /usr/bin/git clone --bare https://github.com/dizk/dotfiles.git $user_home/.dotfiles
-    sudo -u $user /usr/bin/git --git-dir=$user_home/.dotfiles/ --work-tree=$user_home checkout
+    sudo -u $USER /usr/bin/git clone --bare https://github.com/dizk/dotfiles.git $DOTFILES
+    sudo -u $USER /usr/bin/git --git-dir=$DOTFILES --work-tree=$USER_HOME checkout
 else 
     echo "Updating dotfiles..."
-    sudo -u $user /usr/bin/git --git-dir=$user_home/.dotfiles/ --work-tree=$user_home pull
+    sudo -u $USER /usr/bin/git --git-dir=$DOTFILES --work-tree=$USER_HOME pull
 fi
 
 #
 # Install oh-my-zsh
 #
-if [ ! -d "$user_home/.oh-my-zsh" ]; then
-    sudo -u $user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [ ! -d "$OH_MY_ZSH" ]; then
+    echo "Installing oh-my-zsh..."
+    sudo -u $USER sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+#
+# Install custom oh-my-zsh plugins
+#
+ZSH_NVM=$OH_MY_ZSH/custom/plugins/zsh-nvm
+if [ ! -d "$ZSH_NVM" ]; then
+    echo "Installing zsh-nvm plugin..."
+    sudo -u $USER git clone https://github.com/lukechilds/zsh-nvm $ZSH_NVM
 fi
 
 #
 # Change default shell for user
 #
-chsh -s $(which zsh) $user
+chsh -s $(which zsh) $USER
 
 echo "OK! Close this teminal and open a new one ;)"
