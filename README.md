@@ -9,6 +9,8 @@ curl -s https://raw.githubusercontent.com/dizk/dotfiles/main/.dotfiles-setup/set
 * git
 * zsh
 * oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)
+* zsh-nvm (https://github.com/lukechilds/zsh-nvm)
+* sdkman (https://sdkman.io/)
 
 # Changing the dotfiles in the repo
 
