@@ -17,7 +17,7 @@ apt install -y \
 # Clone dotfiles
 #
 sudo -u $user /usr/bin/git clone --bare https://github.com/dizk/dotfiles.git $user_home/.dotfiles
-/usr/bin/git --git-dir=$user_home/.dotfiles/ --work-tree=$user_home checkout
+sudo -u $user /usr/bin/git --git-dir=$user_home/.dotfiles/ --work-tree=$user_home checkout
 # Alias dotfiles is defined in the downloaded dotfiles
 
 #

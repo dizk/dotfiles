@@ -3,7 +3,7 @@
 Run this on ubuntu
 
 ```
-curl -s https://raw.githubusercontent.com/dizk/.dotfiles/master/.dotfiles-setup/setup.sh | sudo bash
+curl -s https://raw.githubusercontent.com/dizk/dotfiles/main/.dotfiles-setup/setup.sh | sudo bash
 ```
 
 
