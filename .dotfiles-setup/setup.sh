@@ -36,6 +36,6 @@ fi
 #
 # Change default shell for user
 #
-sudo -u $user chsh -s $(which zsh)
+chsh -s $(which zsh) $user
 
 echo "OK! Close this teminal and open a new one ;)"
