@@ -5,6 +5,8 @@ Run this:
 curl -s https://raw.githubusercontent.com/dizk/dotfiles/main/.dotfiles-setup/setup.sh | sudo bash
 ```
 
+(you might have login and logout for the changes to take effect)
+
 # What will be installed?
 * git
 * zsh
