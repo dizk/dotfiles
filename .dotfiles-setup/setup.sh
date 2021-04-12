@@ -11,11 +11,9 @@ SETUP_FOLDER="$USER_HOME/.dotfiles-setup"
 SETUP_LOG_FILE="$SETUP_FOLDER/dotfiles-setup.log"
 
 if [ ! -f "$SETUP_LOG_FILE" ]; then
-    echo "Setup log file..."
     sudo -u $USER mkdir -p $SETUP_FOLDER
     touch $SETUP_LOG_FILE
 fi
-
 
 #
 # Install packages
