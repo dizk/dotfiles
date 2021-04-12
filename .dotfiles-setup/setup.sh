@@ -60,6 +60,7 @@ if [ ! -d "$DOTFILES" ]; then
     echo "Initializing dotfiles..."
     sudo -u $USER /usr/bin/git clone --bare https://github.com/dizk/dotfiles.git $DOTFILES &>> $SETUP_LOG_FILE
     sudo -u $USER /usr/bin/git --git-dir=$DOTFILES --work-tree=$USER_HOME checkout &>> $SETUP_LOG_FILE
+    sudo -u $USER /usr/bin/git --git-dir=$DOTFILES --work-tree=$USER_HOME config --local status.showUntrackedFiles no &>> $SETUP_LOG_FILE
 else
     echo "Updating dotfiles..."
     sudo -u $USER /usr/bin/git --git-dir=$DOTFILES --work-tree=$USER_HOME pull &>> $SETUP_LOG_FILE
