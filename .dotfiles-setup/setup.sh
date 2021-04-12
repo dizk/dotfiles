@@ -9,7 +9,7 @@ IFS=$'\n\t'
 USER_HOME=$(sudo -u $USER sh -c 'echo $HOME')
 SETUP_FOLDER="$USER_HOME/.dotfiles-setup"
 SETUP_LOG_FILE="$SETUP_FOLDER/dotfiles-setup.log"
-
+sudo -u $USER mkdir -p SETUP_FOLDER
 
 #
 # Install packages
